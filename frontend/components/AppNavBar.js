@@ -1,22 +1,21 @@
 import React from "react";
-import {Navbar, Nav, NavItem, Form, FormControl, Button} from 'react-bootstrap';
+import {Navbar} from 'react-bootstrap';
 
 const AppNavBar = () => {
   return (
     <>
       <Navbar>
-        <Navbar.Brand href="#home">The Meme Machine</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="#recent">recent</Nav.Link>
-          <Nav.Link href="#top">top memes</Nav.Link>
-          <Nav.Link href="#create">create</Nav.Link>
-        </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-light">Search</Button>
-        </Form>
+        <h1 href="#home">The Meme Machine</h1>
+        <div class="navitems">
+          <button href="#recent">recent</button>
+          <button href="#top">top memes</button>
+          <button href="#create">create</button>
+        </div>
+        <form inline>
+          <input type="text" placeholder="Search"/>
+        </form>
       </Navbar>
-      </>
+    </>
   );
 };
 
