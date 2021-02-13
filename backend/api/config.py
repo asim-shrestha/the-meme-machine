@@ -14,6 +14,8 @@ class BaseConfig:
     POSTGRES_DB = 'main'
     SQLALCHEMY_DATABASE_URI = ''
 
+    FIRESTORE_URL = 'https://firebasestorage.googleapis.com/v0/b/legacy-meme.appspot.com/o'
+
     def __init__(self):
         env_vars = [v for v in os.environ.keys() if (v in vars(BaseConfig)) and not v.startswith('__')]
         [self._apply_env_var(k) for k in env_vars]
