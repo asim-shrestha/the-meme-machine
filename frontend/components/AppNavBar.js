@@ -7,7 +7,7 @@ const AppNavBar = () => {
   return (
     <>
       <Navbar>
-        <h1 href="#home">The Meme Machine</h1>
+        <h1 href="#home">⭐The Meme Machine</h1>
         <div className="navitems">
           <button onClick={() => router.push("/")}>recent</button>
           <button onClick={() => router.push("/top")}>top memes</button>
