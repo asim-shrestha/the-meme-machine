@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Comic+Neue:wght@400;700&display=swap');
+
+:root {
+  --nav: #050606;
+  --bg1: #3F4050;
+  --bg2: #2D2E39;
+  --light: #F8FAFF;
+  --dark: #32333F;
+  --accent: #FECA26;
+  --secondary: #B6D0F7;
+}
+
 html,
 body {
   padding: 0;
@@ -16,41 +28,4 @@ a {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-  
-.meme-container {
-  display: flex;
-}
-
-.meme {
-  position: relative;
-  padding: 10px;
-}
-.meme > img {
-  width: 100%;
-  background: cover;
-  margin-bottom: -5px;
-  background-repeat: no-repeat;
-}
-.meme > h2 {
-  position: absolute;
-  text-align: center;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0.3em 0;
-  padding: 0;
-  font-family: impact, sans-serif;
-  text-transform: uppercase;
-  color: white;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
-    -2px 2px 0 #000, 0 2px 0 #000, 2px 0 0 #000, 0 -2px 0 #000, -2px 0 0 #000,
-    2px 2px 5px #000;
-}
-
-.meme > .top {
-  top: 0.1em;
-}
-.meme > .bottom {
-  bottom: 0.1em;
 }

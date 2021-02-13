@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import Meme from './Meme'
 
 const MemeGenerator = () => {
   const [topText, setTopText] = useState("");
@@ -12,12 +13,8 @@ const MemeGenerator = () => {
 
   return (
     <>
-      <h1>MEME GENERATOR SECTION</h1>
-      <div className='meme' style={{width: "400px"}}>
-        <img src={image} alt='' />
-        <h2 className='top'>{topText}</h2>
-        <h2 className='bottom'>{bottomText}</h2>
-      </div>
+      <h1>MEME GENERATOR</h1>
+      <Meme image={image} topText={topText} bottomText={bottomText}/>
       <Form>
         <Form.Control
           type="text"
