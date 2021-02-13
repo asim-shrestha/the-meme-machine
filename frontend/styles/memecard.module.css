@@ -1,0 +1,9 @@
+.card {
+  display: inline-block;
+  background-color: white;
+  margin: 0.5em;
+}
+
+.image {
+    max-width: 350px;
+}
