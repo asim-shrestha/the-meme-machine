@@ -1,9 +1,11 @@
+import AppNavBar from '../components/AppNavBar';
 import MemeGenerator from '../components/MemeGenerator';
 const create = () => {
   return (
-    <div>
+    <>
+      <AppNavBar/>
       <MemeGenerator/>
-    </div>
+    </>
   )
 }
 
