@@ -30,6 +30,6 @@ a {
   padding: 0;
 }
 
-body, #__next {
+html, body, #__next {
   background-color: #3F4050;
 }

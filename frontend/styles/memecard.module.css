@@ -1,9 +1,9 @@
 .card {
   display: inline-block;
   background-color: white;
-  margin: 1em;
+  margin: 0.5em;
 }
 
 .image {
-    max-width: 450px;
+    max-width: 350px;
 }
