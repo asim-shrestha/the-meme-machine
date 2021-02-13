@@ -9,7 +9,10 @@ import deeppyer
 
 def make_meme(filename, top_text, bottom_text):
     #get image and font
-    img = Image.open(filename)
+    img = Image.open(str(filename))
+    if img.mode != 'RGB':
+        img = img.convert('RGB')
+
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("impact.ttf", 64)
 
@@ -36,7 +39,12 @@ def make_meme(filename, top_text, bottom_text):
 
 async def fry_image(file):
     img = Image.open(file)
-    img = await deeppyer.deepfry(img, flares=False)
+
+    try:
+        img = await deeppyer.deepfry(img)
+    except:
+        print('Flares failed')
+        img = await deeppyer.deepfry(img, flares=False)
 
     buf = BytesIO()
     img.save(buf, format='JPEG')

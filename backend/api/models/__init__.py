@@ -12,6 +12,7 @@ class User(Base):
 class Template(Base):
     name = Column(String)
     url = Column(String)
+    uuid = Column(String)
 
     memes = relationship('Meme', backref='template')
 
@@ -22,6 +23,7 @@ class Meme(Base):
     bottom_text = Column(String)
     is_deep_fried = Column(Boolean)
     url = Column(String)
+    uuid = Column(String)
 
     comments = relationship('MemeComment', backref='meme')
 
