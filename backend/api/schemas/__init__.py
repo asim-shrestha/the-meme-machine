@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 from pydantic import BaseModel
 
 
@@ -21,6 +23,14 @@ class Template(BaseORMModel):
     url: str
 
 
+class MemeCommentCreate(BaseModel):
+    text: str
+
+
+class MemeComment(MemeCommentCreate, BaseORMModel):
+    pass
+
+
 class MemeCreate(BaseModel):
     template_id: int
     top_text: str
@@ -32,5 +42,8 @@ class Meme(MemeCreate, BaseORMModel):
     url: str
 
 
-class MemeFull(MemeCreate, BaseORMModel):
-    url: str
+class MemeFull(Meme):
+    comments: Optional[List[MemeComment]] = []
+
+
+

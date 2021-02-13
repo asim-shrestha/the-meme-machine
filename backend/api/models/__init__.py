@@ -13,6 +13,8 @@ class Template(Base):
     name = Column(String)
     url = Column(String)
 
+    memes = relationship('Meme', backref='template')
+
 
 class Meme(Base):
     template_id = Column(ForeignKey("template.id"))
@@ -20,3 +22,10 @@ class Meme(Base):
     bottom_text = Column(String)
     is_deep_fried = Column(Boolean)
     url = Column(String)
+
+    comments = relationship('MemeComment', backref='meme')
+
+
+class MemeComment(Base):
+    meme_id = Column(ForeignKey("meme.id"))
+    text = Column(String)

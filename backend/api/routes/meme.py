@@ -11,11 +11,11 @@ FOLDER = '/memes'
 
 
 @router.post('', response_model=schemas.Meme)
-def create_meme(meme: schemas.MemeCreate, user_id: str = None,  db: session = Depends(session)):
+def create_meme(meme: schemas.MemeCreate, db: session = Depends(session)):
     id_ = str(uuid.uuid4())
     # firestore.child(f'{FOLDER}/{id_}').put(file)
 
-    meme = models.Meme(**meme.to_dict(), url=get_full_url(folder, id_))
+    meme = models.Meme(**meme.dict(), url=get_full_url(FOLDER, id_))
     meme.save(db)
 
     return meme
@@ -28,6 +28,21 @@ def get_all_memes(db: session = Depends(session)):
 
 @router.get('/{meme_id}', response_model=schemas.MemeFull)
 def get_meme(meme_id: int, db: session = Depends(session)):
+    meme = models.Meme.query(db).get(meme_id)
+    print(meme.comments)
+    print(meme.comments[0].text)
+    return meme
+
+
+@router.put('/{meme_id}', response_model=schemas.MemeFull)
+def comment_on_a_meme(comment: schemas.MemeCommentCreate, meme_id: int, db: session = Depends(session)):
+    comment = models.MemeComment(
+        **comment.dict(), meme_id=meme_id
+    )
+
+    comment.save(db)
+
     return models.Meme.query(db).get(meme_id)
+
 
 
