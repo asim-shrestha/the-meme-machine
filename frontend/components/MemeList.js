@@ -1,7 +1,8 @@
 import React from 'react';
 import MemeCard from './MemeCard';
 import {Container, Col, Row} from 'react-bootstrap';
-import {ALL_MEMES} from '../util/data'
+import {ALL_MEMES, QUERIES} from '../util/data'
+import Columns from 'react-columns';
 
 const MemeList = () => {
   const [memes, setMemes] = React.useState([]);
@@ -10,9 +11,10 @@ const MemeList = () => {
     setMemes(ALL_MEMES);
   }, [])
 
+
+
   return (
-    <Container fluid>
-      <Row className="justify-content-center">
+  <Columns queries={QUERIES}>
       {memes.map(meme =>{ return (
         <MemeCard
         key={meme.key}
@@ -21,8 +23,7 @@ const MemeList = () => {
         comments={meme.comments}
         />
         )})}
-      </Row>
-    </Container>
+    </Columns>
   )
 }
 

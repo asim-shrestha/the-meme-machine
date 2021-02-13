@@ -20,13 +20,13 @@ const MemeGenerator = () => {
           type="text"
           placeholder="Top text"
           value={topText}
-          onChange={(e) => handleChange(e, setTopText)}
+          onChange={(e) => setTopText(e.target.value)}
           />
         <Form.Control
           type="text"
           placeholder="Bottom text"
           value={bottomText}
-          onChange={(e) => handleChange(e, setBottomText)}
+          onChange={(e) => setBottomText(e.target.value)}
           />
         <Button variant="primary">Create</Button>
       </Form>
