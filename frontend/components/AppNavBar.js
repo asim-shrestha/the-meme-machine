@@ -1,15 +1,17 @@
 import React from "react";
 import {Navbar} from 'react-bootstrap';
+import { useRouter } from 'next/router'
 
 const AppNavBar = () => {
+  const router = useRouter();
   return (
     <>
       <Navbar>
         <h1 href="#home">The Meme Machine</h1>
         <div class="navitems">
-          <button href="#recent">recent</button>
-          <button href="#top">top memes</button>
-          <button href="#create">create</button>
+          <button onClick={() => router.push("/")}>recent</button>
+          <button onClick={() => router.push("/top")}>top memes</button>
+          <button onClick={() => router.push("/create")}>create</button>
         </div>
         <form inline>
           <input type="text" placeholder="Search"/>
