@@ -8,12 +8,12 @@ const AppNavBar = () => {
     <>
       <Navbar>
         <h1 href="#home">The Meme Machine</h1>
-        <div class="navitems">
+        <div className="navitems">
           <button onClick={() => router.push("/")}>recent</button>
           <button onClick={() => router.push("/top")}>top memes</button>
           <button onClick={() => router.push("/create")}>create</button>
         </div>
-        <form inline>
+        <form>
           <input type="text" placeholder="Search"/>
         </form>
       </Navbar>
