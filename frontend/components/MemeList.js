@@ -12,13 +12,16 @@ const MemeList = () => {
 
   return (
     <Container fluid>
+      <Row className="justify-content-center">
       {memes.map(meme =>{ return (
         <MemeCard
+        key={meme.key}
         image={meme.image}
         stars={meme.stars}
         comments={meme.comments}
         />
         )})}
+      </Row>
     </Container>
   )
 }
