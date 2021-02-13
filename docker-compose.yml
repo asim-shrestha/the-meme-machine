@@ -12,7 +12,7 @@ services:
       - pg_data:/var/lib/postgresql/data/
 
   api:
-    build: .
+    build: ./backend
     ports:
       - "5000:5000"
     env_file:

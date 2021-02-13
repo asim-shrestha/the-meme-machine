@@ -7,4 +7,6 @@ inflection
 pytest
 sqlalchemy-utils
 fastapi-crudrouter
-pyrebase
+pyrebase4
+pillow
+deeppyer
