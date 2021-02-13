@@ -14,6 +14,7 @@ const MemeList = () => {
     <Container fluid>
       {memes.map(meme =>{ return (
         <MemeCard
+        key={meme.key}
         image={meme.image}
         stars={meme.stars}
         comments={meme.comments}
