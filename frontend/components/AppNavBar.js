@@ -4,7 +4,7 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 const AppNavBar = () => {
   return (
     <>
-      <Navbar bg="dark">
+      <Navbar>
         <Navbar.Brand href="#home">The Meme Machine</Navbar.Brand>
       </Navbar>
       </>

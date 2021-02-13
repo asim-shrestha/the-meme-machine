@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Comic+Neue:wght@400;700&display=swap');
+
+:root {
+  --nav: #050606;
+  --bg1: #3F4050;
+  --bg2: #2D2E39;
+  --light: #F8FAFF;
+  --dark: #32333F;
+  --accent: #FECA26;
+  --secondary: #B6D0F7;
+}
+
 html,
 body {
   padding: 0;
@@ -17,7 +29,7 @@ a {
   margin: 0;
   padding: 0;
 }
-  
+
 .meme-container {
   display: flex;
 }
@@ -53,4 +65,11 @@ a {
 }
 .meme > .bottom {
   bottom: 0.1em;
+}
+
+.navbar {
+  font-family: "Bangers";
+  color: white;
+  background-color: var(--light);
+  height: 2em;
 }
