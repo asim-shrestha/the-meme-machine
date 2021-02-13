@@ -6,3 +6,4 @@ psycopg2
 inflection
 pytest
 sqlalchemy-utils
+fastapi-crudrouter
