@@ -17,7 +17,8 @@ def create_template(file: bytes = File(...), name: str = Form(...), db: session 
 
     template = models.Template(
         name=name,
-        url=get_full_url(FOLDER, id_)
+        url=get_full_url(FOLDER, id_),
+        uuid=id_
     )
 
     template.save(db)

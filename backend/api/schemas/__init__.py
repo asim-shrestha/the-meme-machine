@@ -23,6 +23,7 @@ class UserCreate(BaseModel):
 class Template(BaseORMModel):
     name: str
     url: str
+    uuid: str
 
 
 class MemeCommentCreate(BaseModel):
@@ -50,6 +51,7 @@ class MemeCreate(BaseModel):
 
 class Meme(MemeCreate, BaseORMModel):
     url: str
+    uuid: str
 
 
 class MemeFull(Meme):

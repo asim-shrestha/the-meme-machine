@@ -15,10 +15,11 @@ FOLDER = '/memes'
 @router.post('', response_model=schemas.Meme)
 async def create_meme(meme: schemas.MemeCreate, db: session = Depends(session)):
     id_ = str(uuid.uuid4())
+    template = models.Template.query(db).get(meme.template_id)
+    file_path = config.TMP_FOLDER / template.uuid
 
-    filename = 'MicrosoftTeams-image (13).jpg'
-    firestore.child(f"templates/{filename}").download(path=str(config.TMP_FOLDER), filename=str(config.TMP_FOLDER / filename))
-    buf = config.TMP_FOLDER / filename
+    firestore.child(f"templates/{template.uuid}").download(path=str(config.TMP_FOLDER), filename=str(file_path))
+    buf = file_path
 
     buf = make_meme(buf, meme.top_text, meme.bottom_text)
 
@@ -27,7 +28,7 @@ async def create_meme(meme: schemas.MemeCreate, db: session = Depends(session)):
 
     firestore.child(f'{FOLDER}/{id_}').put(buf.getvalue())
 
-    meme = models.Meme(**meme.dict(), url=get_full_url(FOLDER, id_))
+    meme = models.Meme(**meme.dict(), url=get_full_url(FOLDER, id_), uuid=id_)
     meme.save(db)
 
     return meme
