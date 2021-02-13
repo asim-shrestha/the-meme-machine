@@ -34,7 +34,7 @@ def get_meme(meme_id: int, db: session = Depends(session)):
     return meme
 
 
-@router.put('/{meme_id}', response_model=schemas.MemeFull)
+@router.post('/{meme_id}/comment', response_model=schemas.MemeFull)
 def comment_on_a_meme(comment: schemas.MemeCommentCreate, meme_id: int, db: session = Depends(session)):
     comment = models.MemeComment(
         **comment.dict(), meme_id=meme_id
@@ -43,6 +43,18 @@ def comment_on_a_meme(comment: schemas.MemeCommentCreate, meme_id: int, db: sess
     comment.save(db)
 
     return models.Meme.query(db).get(meme_id)
+
+
+@router.post('/{meme_id}/like', response_model=schemas.MemeFull)
+def like_a_meme(like: schemas.MemeLikeCreate, meme_id: int, db: session = Depends(session)):
+    like = models.MemeLike(
+        **like.dict(), meme_id=meme_id
+    )
+
+    like.save(db)
+
+    return models.Meme.query(db).get(meme_id)
+
 
 
 

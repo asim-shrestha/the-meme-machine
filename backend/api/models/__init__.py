@@ -28,4 +28,10 @@ class Meme(Base):
 
 class MemeComment(Base):
     meme_id = Column(ForeignKey("meme.id"))
+    user_id = Column(ForeignKey("user.id"))
     text = Column(String)
+
+
+class MemeLike(Base):
+    meme_id = Column(ForeignKey("meme.id"))
+    user_id = Column(ForeignKey("user.id"))

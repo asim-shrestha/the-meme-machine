@@ -1,10 +1,12 @@
 from typing import List, Optional
+from datetime import datetime
 
 from pydantic import BaseModel
 
 
 class BaseORMModel(BaseModel):
     id: int
+    timestamp: datetime
 
     class Config:
         orm_mode = True
@@ -28,6 +30,14 @@ class MemeCommentCreate(BaseModel):
 
 
 class MemeComment(MemeCommentCreate, BaseORMModel):
+    pass
+
+
+class MemeLikeCreate(BaseModel):
+    user_id: int
+
+
+class MemeLike(MemeCommentCreate, BaseORMModel):
     pass
 
 
