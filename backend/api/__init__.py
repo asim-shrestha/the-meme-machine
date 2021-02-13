@@ -22,6 +22,8 @@ firebase = pyrebase.initialize_app({
   "storageBucket": "legacy-meme.appspot.com"
 })
 
+firestore = firebase.storage()
+
 from . import routes
 
 
