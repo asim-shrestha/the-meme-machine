@@ -11,7 +11,7 @@
 }
 
 html,
-body {
+body, #__next{
   padding: 0;
   margin: 0;
   background-color: var(--bg1);
