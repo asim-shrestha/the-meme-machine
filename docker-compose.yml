@@ -11,14 +11,23 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data/
 
-  api:
-    build: .
-    ports:
-      - "5000:5000"
-    env_file:
-      - .env
-    depends_on:
-      - db
+#  api:
+#    build: ./backend
+#    ports:
+#      - "5000:5000"
+#    env_file:
+#      - .env
+#    depends_on:
+#      - db
+#
+#  frontend:
+#    build: ./frontend
+#    ports:
+#      - 3000:3000
+#    volumes:
+#      - ./frontend:/frontend
+#      - /frontend/node_modules
+
 
 volumes:
   pg_data:

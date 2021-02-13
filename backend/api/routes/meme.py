@@ -1,8 +1,10 @@
 import uuid
 from typing import List
+from io import BytesIO
 
-from api import session, models, schemas, firestore
+from api import session, models, schemas, firestore, config
 from api.routes.utils import get_full_url
+from api.meme_maker.make_meme import make_meme, fry_image
 from fastapi import Depends, APIRouter, File, Form
 
 router = APIRouter()
@@ -11,9 +13,19 @@ FOLDER = '/memes'
 
 
 @router.post('', response_model=schemas.Meme)
-def create_meme(meme: schemas.MemeCreate, db: session = Depends(session)):
+async def create_meme(meme: schemas.MemeCreate, db: session = Depends(session)):
     id_ = str(uuid.uuid4())
-    # firestore.child(f'{FOLDER}/{id_}').put(file)
+
+    filename = 'MicrosoftTeams-image (13).jpg'
+    firestore.child(f"templates/{filename}").download(path=str(config.TMP_FOLDER), filename=str(config.TMP_FOLDER / filename))
+    buf = config.TMP_FOLDER / filename
+
+    buf = make_meme(buf, meme.top_text, meme.bottom_text)
+
+    if meme.is_deep_fried:
+        buf = await fry_image(buf)
+
+    firestore.child(f'{FOLDER}/{id_}').put(buf.getvalue())
 
     meme = models.Meme(**meme.dict(), url=get_full_url(FOLDER, id_))
     meme.save(db)

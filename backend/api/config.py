@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+
 from distutils.util import strtobool
 
 
@@ -15,6 +17,7 @@ class BaseConfig:
     SQLALCHEMY_DATABASE_URI = ''
 
     FIRESTORE_URL = 'https://firebasestorage.googleapis.com/v0/b/legacy-meme.appspot.com/o'
+    TMP_FOLDER = Path(__file__).parent / '_tmp'
 
     def __init__(self):
         env_vars = [v for v in os.environ.keys() if (v in vars(BaseConfig)) and not v.startswith('__')]
@@ -22,6 +25,9 @@ class BaseConfig:
 
         if not self.SQLALCHEMY_DATABASE_URI:
             self.SQLALCHEMY_DATABASE_URI = f'postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PW}@{self.POSTGRES_HOST}/{self.POSTGRES_DB}'
+
+        if not self.TMP_FOLDER.exists():
+            self.TMP_FOLDER.mkdir()
 
     def _apply_env_var(self, env_var) -> None:
         """ Load environment variables"""
