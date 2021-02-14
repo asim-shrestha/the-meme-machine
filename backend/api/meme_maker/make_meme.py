@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -14,7 +16,11 @@ def make_meme(filename, top_text, bottom_text):
         img = img.convert('RGB')
 
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("impact.ttf", 64)
+
+    try:
+        font = ImageFont.truetype('impact.ttf', 64)
+    except:
+        font = ImageFont.truetype('/usr/local/share/fonts/impact.ttf', 64)
 
     #set some variables
     white = (255, 255, 255)

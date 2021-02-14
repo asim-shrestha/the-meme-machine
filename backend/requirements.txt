@@ -10,3 +10,4 @@ fastapi-crudrouter
 pyrebase4
 pillow
 deeppyer
+pyrebase4
