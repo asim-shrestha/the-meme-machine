@@ -1,0 +1,19 @@
+.layout {
+    width: 100vw;
+    height: calc(100vh - 34px);
+}
+
+.section {
+    background-color: #32333F;
+    width: 75vw;
+    height: 75vh;
+}
+
+.title {
+    font-family: Bungee;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    text-align: center;
+    color: #FFFFFF;
+}
