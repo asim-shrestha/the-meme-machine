@@ -16,7 +16,7 @@ const AppNavBar = () => {
         </div>
         <form>
           <a href="https://github.com/asim-shrestha/mountain-madness-2021" >
-            <img src="github.png" style={{"height": '30px', "margin-left": "2px"}}/>
+            <img src="github.png" style={{"height": '30px', "marginLeft": "2px"}}/>
           </a>
         </form>
       </Navbar>
