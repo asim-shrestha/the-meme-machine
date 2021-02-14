@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { $axios } from '../plugins/axios';
 import Meme from './Meme'
 
 const MemeGenerator = () => {
@@ -10,6 +11,11 @@ const MemeGenerator = () => {
   const handleChange = (e, setText) => {
     setText(e.target.value);
   };
+
+  async function submit() {
+      const payload = { template_id: 1, top_text: topText, bottom_text: bottomText}
+      await ((await $axios.post('/meme', payload)).data);
+  }
 
   return (
     <>
@@ -28,7 +34,7 @@ const MemeGenerator = () => {
           value={bottomText}
           onChange={(e) => setBottomText(e.target.value)}
           />
-        <Button variant="primary">Create</Button>
+        <Button variant="primary" onClick={() => submit()}>Create</Button>
       </Form>
     </>
   );

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 import pyrebase
 
 from .config import BaseConfig
@@ -13,6 +15,15 @@ app = FastAPI(
     description="Team: Legacy Edition",
     docs_url='/'
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 firebase = pyrebase.initialize_app({
