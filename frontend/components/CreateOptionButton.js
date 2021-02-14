@@ -1,8 +1,9 @@
-const CreateOptionButton = ({children, onClick}) => {
+const CreateOptionButton = ({children, imgSrc, onClick}) => {
   return (
     <>
-      <div className="buttonCard " onClick={onClick}>
-        <p>
+      <div className="buttonCard d-flex flex-column align-items-center justify-content-center" onClick={onClick}>
+        <img src={imgSrc} alt="test" width="80%" style={{padding: "20px"}}/>
+        <p style={{paddingTop: "40px"}}>
           {children}
         </p>
       </div>
@@ -11,5 +12,4 @@ const CreateOptionButton = ({children, onClick}) => {
 };
 
 export default CreateOptionButton;
-
 
