@@ -11,7 +11,7 @@ const TemplateList = ({setTemplate}) => {
   React.useEffect(() => {
   db.ref("templates").on("value", snapshot => {
       let t = [];
-      snapshot.forEach((snap) => {t.push({...snap.val(), key: snap.key});});
+      snapshot.forEach((snap) => {t.unshift({...snap.val(), key: snap.key});});
       setTemplates(t);
       setFilterTemplates(t);
       console.log(t);
