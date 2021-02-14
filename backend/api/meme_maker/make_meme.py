@@ -54,6 +54,8 @@ def find_font_size(text, font, image, target_width_ratio):
     tested_font_size = 100
     tested_font = ImageFont.truetype(font, tested_font_size)
     observed_width, observed_height = get_text_size(text, image, tested_font)
+    if (observed_width / image.width) == 0:
+        return 32
     estimated_font_size = tested_font_size / (observed_width / image.width) * target_width_ratio
     return round(estimated_font_size)
 
