@@ -32,8 +32,10 @@
 
 .meme > .top {
   top: 0.1em;
+  width: inherit;
 }
 
 .meme > .bottom {
   bottom: 0.1em;
+  width: inherit;
 }

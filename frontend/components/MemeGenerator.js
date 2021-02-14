@@ -22,7 +22,7 @@ const MemeGenerator = ({ template, onCreate}) => {
             placeholder="Top text"
             value={topText}
             onChange={(e) => setTopText(e.target.value)}
-          />
+            />
         </div>
         <Form.Control
           type="text"
