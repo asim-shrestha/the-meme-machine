@@ -8,7 +8,7 @@ const create = () => {
   return (
     <>
       <AppNavBar/>
-      <AppLayout title="What do you meme?">
+      <AppLayout title="What do you meme?" class="create">
         <CreateOptionButton onClick={() => router.push("/create/template")}>
           <img src="imageicon.webp"/>
           <br/>upload a template
