@@ -1,10 +1,10 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-import MemeCard from './MemeCard';
-import MemeList from './MemeList';
-import {db} from "../plugins/firebase";
+import TemplateList from './TemplateList';
+import MemeGenerator from './MemeGenerator';
 
 const CommentsModal = (props) => {
+  const [template, setTemplate] = React.useState(null);
 
   return (
     <Modal
@@ -13,11 +13,18 @@ const CommentsModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
+        <Modal.Header closeButton>
+        <Modal.Title>Create a response</Modal.Title>
+      </Modal.Header>
       <Modal.Body>
-
+      {
+          template === null ?
+            <TemplateList setTemplate={setTemplate}/>
+            :
+            <MemeGenerator template={template}/>
+        }
       </Modal.Body>
       <Modal.Footer>
-        <Button>create response</Button>
         <Button onClick={props.onHide}>close</Button>
       </Modal.Footer>
     </Modal>
