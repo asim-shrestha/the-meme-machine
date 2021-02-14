@@ -1,6 +1,7 @@
 import json
 import uuid
 from datetime import datetime
+from typing import Optional
 
 from api.meme_maker.make_meme import make_meme, fry_image
 from api.routes.utils import get_full_url, firebase_insert
@@ -15,12 +16,22 @@ FOLDER = '/memes'
 FEED = f'feed{FOLDER}'
 
 
+class MemeMemeCreate(BaseModel):
+    template: str
+    topText: str
+    bottomText: str
+    isDeepFried: bool = False
+    comments: int = 0
+    key: str
+
+
 class MemeCreate(BaseModel):
     template: str
     topText: str
     bottomText: str
     isDeepFried: bool = False
     comments: int = 0
+    prev: Optional[MemeMemeCreate]
 
 
 class Meme(MemeCreate):
@@ -59,18 +70,21 @@ async def create_meme(meme: MemeCreate):
 async def create_meme_comment(meme_id: str, comment: MemeCreate, target: str = 'memes'):
     assert target in ['memes', 'comments']
     id_ = await generate_meme(comment)
+    prev = comment.prev
 
-    meme = db.child(target).child(meme_id).get().val()
-    if not (meme):
+    if not prev:
+        meme = db.child('memes').child(meme_id).get().val()
         target = 'memes'
-        meme = db.child(target).child(meme_id).get().val()
-
-    db.child(target).child(meme_id).update({'comments': meme.get('comments', 0) + 1})
+        db.child(target).child(meme_id).update({'comments': meme.get('comments', 0) + 1})
+    else:
+        target = 'comments'
+        meme = db.child('comments').child(prev.key).child(meme_id).get().val()
+        db.child(target).child(prev.key).child(meme_id).update({'comments': meme.get('comments', 0) + 1})
 
     comment = Meme(**comment.dict(), url=get_full_url(FOLDER, id_), timestamp=datetime.utcnow())
     meme_json = json.loads(comment.json())
 
-    db.child(target).child(meme_id).push(meme_json)
+    db.child('comments').child(meme_id).push(meme_json)
 
     return meme_json
 
