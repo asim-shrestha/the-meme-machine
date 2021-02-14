@@ -20,7 +20,7 @@ const MemeGenerator = ({ template }) => {
       bottom_text: bottomText,
     };
     $axios.post("/meme", payload).then(() => {
-        router.push("/")
+        router.push("/recent")
       }
     );
   }

@@ -1,19 +1,10 @@
 import React from 'react';
 import MemeCard from './MemeCard';
-import {Container, Col, Row} from 'react-bootstrap';
-import { $axios } from '../plugins/axios';
-import { db } from '../plugins/firebase';
+import {Container, Row} from 'react-bootstrap';
+import MemeModal from './MemeModal';
 
-const MemeList = () => {
-  const [memes, setMemes] = React.useState([]);
-
-  React.useEffect(() => {
-    db.ref("feed").child('memes').on("value", snapshot => {
-        let m = [];
-        snapshot.forEach((snap) => {m.push(JSON.parse(snap.val()));});
-        setMemes(m);
-        console.log(m);
-    })}, [])
+const MemeList = ({memes}) => {
+  const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
     <Container fluid>
@@ -24,9 +15,15 @@ const MemeList = () => {
         image={meme.url}
         stars={meme.stars}
         comments={meme.comments}
+        onClick={() => setSelectedMeme(meme)}
         />
         )})}
       </Row>
+      <MemeModal
+        meme={selectedMeme}
+        show={selectedMeme != null}
+        onHide={() => setSelectedMeme(null)}
+      />
     </Container>
   )
 }
