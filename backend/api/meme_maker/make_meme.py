@@ -28,7 +28,7 @@ def make_meme(filename, top_text, bottom_text):
         font = ImageFont.truetype('impact.ttf', font_size)
     except:
         font_size = find_font_size(bottom_text, '/usr/local/share/fonts/impact.ttf', img, 1/3)
-        font = ImageFont.truetype('/usr/local/share/fonts/impact.ttf', 64)
+        font = ImageFont.truetype('/usr/local/share/fonts/impact.ttf', 1/3)
 
     #set some variables
     white = (255, 255, 255)
