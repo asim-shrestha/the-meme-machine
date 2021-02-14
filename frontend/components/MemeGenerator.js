@@ -15,9 +15,9 @@ const MemeGenerator = ({ template }) => {
 
   async function submit() {
     const payload = {
-      template_id: template.id,
-      top_text: topText,
-      bottom_text: bottomText,
+      template: template.key,
+      topText: topText,
+      bottomText: bottomText,
     };
     $axios.post("/meme", payload).then(() => {
         router.push("/recent")

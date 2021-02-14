@@ -1,20 +1,19 @@
 import React from 'react';
 import TemplateCard from './TemplateCard';
 import {Container, Col, Row} from 'react-bootstrap';
-import { $axios } from '../plugins/axios';
+import {db} from "../plugins/firebase";
 
 const TemplateList = ({setTemplate}) => {
   const [templates, setTemplates] = React.useState([]);
 
-  React.useEffect(() => {
-    (async function anyNameFunction() {
-      try {
-        setTemplates((await $axios.get('/template')).data);
-      } catch (e) {
-        console.log(e)
-      }
-    })();
-  }, [])
+    React.useEffect(() => {
+    // TODO CHANGE TO GET TOP MEMES
+    db.ref("templates").on("value", snapshot => {
+        let t = [];
+        snapshot.forEach((snap) => {t.push({...snap.val(), key: snap.key});});
+        setTemplates(t);
+        console.log(t);
+    })}, [])
 
   return (
     <Container fluid>
