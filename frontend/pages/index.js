@@ -23,10 +23,11 @@ export default function Home() {
           <div class="page2"></div>
           <div class="page1"></div>
           <div class="front">
-            <img src="star.png" style={{"width":"15vh"}}/>
+            <img src="star.png" class="bookimg" style={{"width":"15vh","margin-left":"5em"}}/>
             <h1 style={{"font-family":"Bangers"}}>The Meme Machine</h1>
-            <p>written by adam and asim</p>
-            <p>illustrated by jen</p>
+            <br/><br/><br/><br/><br/>
+            <span>written by adam and asim</span><br/>
+            <span>illustrated by jen</span>
           </div>
         </div>
       </div>
