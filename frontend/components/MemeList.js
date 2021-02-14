@@ -15,7 +15,6 @@ const MemeList = ({memes, size}) => {
           <MemeCard
           key={meme.key}
           image={meme.url}
-          stars={meme.stars}
           comments={meme.comments}
           onClick={() => setSelectedMeme(meme)}
           size={size}

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from '../styles/memecard.module.css'
 
-const MemeCard = ({image, stars, comments, onClick, size}) => {
+const MemeCard = ({image, comments, onClick, size}) => {
   let style = {};
   style = size == "lg" ? {width: "600px"} : style
   style = size == "sm" ? {width: "150px"} : style
@@ -9,7 +9,7 @@ const MemeCard = ({image, stars, comments, onClick, size}) => {
     <div className={styles.card} onClick={onClick ? onClick : () => {}}>
       <img className={styles.image} variant="top" src={image} style={style}/>
       {
-        stars && comments ? 
+        comments !== undefined? 
       <div className={styles.react}>
         <h5>
           <span style={{color: "black"}}>💬 {comments}</span>
