@@ -10,22 +10,8 @@ const CommentsModal = (props) => {
   const {getComments} = props;
 
   async function submit(payload) {
-    // Upload the current meme
-    $axios.post("/meme", payload).then((res) => {
-      // TODO FIX THIS ADAM!!!!!!!
-      // TODO Res data currently doesn't give the key of the newly added meme
-      // After the meme is uploaded, upload the comment record
-      const commentPayload = {
-        template: res.data.key,
-        target: "comments",
-      }
-
-      // Note `meme` is the current meme
-      $axios.post("/meme/" + meme.key, commentPayload).then(() => {
-        props.onHide();
-        getComments();
-      });
-    });
+    console.log(payload, meme)
+    await $axios.post(`/meme/${meme.key}?target=comments`, payload)
   }
 
   return (
