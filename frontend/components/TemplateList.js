@@ -35,9 +35,9 @@ const TemplateList = ({setTemplate}) => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <Container fluid style={{overflowY:"scroll",height:"50vh",background:"white",margin:"0 2em"}}>
+      <Container fluid style={{overflowY:"scroll",height:"50vh",background:"white",margin:"0 2em",width:"60vw"}}>
         {
-        filterTemplates.length > 0 ?   
+        filterTemplates.length > 0 ?
         filterTemplates.map(template =>{ return (
           <TemplateCard
           key={template.uuid}
