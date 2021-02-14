@@ -16,7 +16,7 @@ const MemeModal = (props) => {
       ALL_MEMES
     )
   }, [])
-  
+
 
   return (
     <Modal
@@ -29,14 +29,14 @@ const MemeModal = (props) => {
         <div style={{display: "flex", justifyContent: "center", padding: "15px"}}>
           <MemeCard image={meme.url} size="lg"/>
         </div>
-        <h4>Responses:</h4>
+        <h4>comments:</h4>
         <div>
           <MemeList memes={comments} size="sm"/>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button>Create Response</Button>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button>create response</Button>
+        <Button onClick={props.onHide}>close</Button>
       </Modal.Footer>
     </Modal>
   );
