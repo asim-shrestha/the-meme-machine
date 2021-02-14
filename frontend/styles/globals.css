@@ -100,3 +100,23 @@ a {
 h1 {
     font-family: "Bungee";
 }
+
+.buttonCard { 
+  width: 20vw;
+  height: 45vh;
+  background: #F8FAFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 35px;
+  cursor: pointer;
+}
+
+.buttonCard > p {
+  font-family: Comic Neue;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 41px;
+  text-align: center;
+
+  color: #1C1E23;
+}
