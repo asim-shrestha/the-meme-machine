@@ -1,20 +1,10 @@
 import React from 'react';
 import MemeCard from './MemeCard';
-import {Container, Col, Row} from 'react-bootstrap';
-import { $axios } from '../plugins/axios';
+import {Container, Row} from 'react-bootstrap';
+import MemeModal from './MemeModal';
 
-const MemeList = () => {
-  const [memes, setMemes] = React.useState([]);
-
-  React.useEffect(() => {
-    (async function anyNameFunction() {
-      try {
-        setMemes((await $axios.get('/meme')).data);
-      } catch (e) {
-        console.log(e)
-      }
-    })();
-  }, [])
+const MemeList = ({memes}) => {
+  const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
     <Container fluid>
@@ -25,9 +15,15 @@ const MemeList = () => {
         image={meme.url}
         stars={meme.stars}
         comments={meme.comments}
+        onClick={() => setSelectedMeme(meme)}
         />
         )})}
       </Row>
+      <MemeModal
+        meme={selectedMeme}
+        show={selectedMeme != null}
+        onHide={() => setSelectedMeme(null)}
+      />
     </Container>
   )
 }
