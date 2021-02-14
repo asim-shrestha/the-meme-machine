@@ -4,15 +4,8 @@ import {Container, Row} from 'react-bootstrap';
 import MemeModal from './MemeModal';
 import { db } from '../plugins/firebase';
 
-const MemeList = () => {
-  const [memes, setMemes] = React.useState([]);
-
-  React.useEffect(() => {
-    db.ref("memes").on("value", snapshot => {
-        let m = [];
-        snapshot.forEach((snap) => {m.push(snap.val());});
-        setMemes(m);
-    })}, [])
+const MemeList = ({memes}) => {
+  const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
     <Container fluid>
