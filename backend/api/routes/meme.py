@@ -1,11 +1,13 @@
+import json
 import uuid
 from datetime import datetime
 
-from api import firestore, config, db
 from api.meme_maker.make_meme import make_meme, fry_image
 from api.routes.utils import get_full_url, firebase_insert
 from fastapi import APIRouter
 from pydantic import BaseModel
+
+from api import firestore, config, db
 
 router = APIRouter()
 
@@ -18,6 +20,7 @@ class MemeCreate(BaseModel):
     topText: str
     bottomText: str
     isDeepFried: bool = False
+    comments: int = 0
 
 
 class Meme(MemeCreate):
@@ -25,11 +28,8 @@ class Meme(MemeCreate):
     timestamp: datetime
 
 
-@router.post('', response_model=Meme)
-@firebase_insert('memes')
-async def create_meme(meme: MemeCreate):
+async def generate_meme(meme) -> str:
     id_ = str(uuid.uuid4())
-
     template = db.child('templates').child(meme.template).get().val()
     file_path = config.TMP_FOLDER / template['uuid']
 
@@ -42,8 +42,26 @@ async def create_meme(meme: MemeCreate):
 
     firestore.child(f'{FOLDER}/{id_}').put(buf.getvalue())
 
+    return id_
+
+
+@router.post('', response_model=Meme)
+@firebase_insert('memes')
+async def create_meme(meme: MemeCreate):
+    id_ = await generate_meme(meme)
+
     return Meme(**meme.dict(), url=get_full_url(FOLDER, id_), timestamp=datetime.utcnow())
 
 
+@router.post('/{meme_id}', response_model=Meme)
+async def create_meme_comment(meme_id: str, meme: MemeCreate):
+    id_ = await generate_meme(meme)
+
+    meme = Meme(**meme.dict(), url=get_full_url(FOLDER, id_), timestamp=datetime.utcnow())
+    meme_json = json.loads(meme.json())
+
+    db.child('comments').child(meme_id).push(meme_json)
+
+    return meme_json
 
 
