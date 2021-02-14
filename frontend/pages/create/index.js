@@ -6,8 +6,14 @@ const create = () => {
     <>
       <AppNavBar/>
       <AppLayout title="What do you meme?">
-        <CreateOptionButton>upload a meme</CreateOptionButton>
-        <CreateOptionButton>create a meme</CreateOptionButton>
+        <CreateOptionButton>
+          <img src="imageicon.webp"/>
+          <br/>upload a meme
+        </CreateOptionButton>
+        <CreateOptionButton>
+          <img src="createicon.png" style={{opacity:0.65}}/>
+          <br/>create a meme
+        </CreateOptionButton>
       </AppLayout>
     </>
   );
