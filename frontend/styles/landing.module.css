@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Comic+Neue:wght@400;700&display=swap');
+
+.coverimg > img {
+  object-fit: fill;
+  width: 100vw;
+  height: 95vh;
+  position: absolute;
+}
+.coverimg > h1 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Bangers";
+}
