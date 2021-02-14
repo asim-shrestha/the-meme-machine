@@ -30,4 +30,3 @@ async def create_template(file: bytes = File(...), name: str = Form(...)):
         uuid=id_,
         timestamp=datetime.utcnow()
     )
-

@@ -7,8 +7,7 @@ const MemeCard = ({image, stars, comments, onClick}) => {
       <img className={styles.image} variant="top" src={image}/>
       <div style={{padding: "5px"}}>
         <h5>
-          <span style={{paddingRight: "1em"}}>⭐ {stars}{ }</span>
-          <span>💬 {comments}</span>
+          <span style={{color: "black"}}>💬 {comments}</span>
         </h5>
       </div>
     </div>
