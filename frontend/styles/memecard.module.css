@@ -1,10 +1,15 @@
 .card {
   display: inline-block;
   background-color: white;
-  margin: 0.5em;
+  margin-top: 0.8em;
   cursor: pointer;
 }
 
 .image {
-    max-width: 350px;
+  width: 350px;
+}
+
+.react {
+  padding-top: 0.5em;
+  padding-left: 0.5em;
 }
