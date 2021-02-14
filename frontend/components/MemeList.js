@@ -9,7 +9,7 @@ const MemeList = ({memes, size}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
-    <Container className="memelist" style={{"padding":"5em 0"}}>
+    <div className="memelist" style={{"padding":"5em 0"}}>
       <Columns queries={QUERIES}>
         {memes.map(meme =>{ return (
           <MemeCard
@@ -28,7 +28,7 @@ const MemeList = ({memes, size}) => {
         show={selectedMeme != null}
         onHide={() => setSelectedMeme(null)}
       />
-    </Container>
+    </div>
   )
 }
 

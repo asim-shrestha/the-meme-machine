@@ -6,7 +6,8 @@
 }
 
 .image {
-  width: 350px;
+  width: 300px;
+  object-fit: contain;
 }
 
 .react {
