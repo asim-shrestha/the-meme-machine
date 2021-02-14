@@ -3,10 +3,12 @@ import AppNavBar from "../../components/AppNavBar";
 import { Form, Button } from "react-bootstrap";
 import { $axios } from "../../plugins/axios";
 import AppLayout from "../../components/AppLayout";
+import { useRouter } from 'next/router'
 
 const template = () => {
   const [file, setFile] = React.useState({ name: "fake" });
   const [name, setName] = React.useState("");
+  const router = useRouter();
 
   const readFile = (file) => {
     console.log(file);
@@ -25,13 +27,13 @@ const template = () => {
     const formData = new FormData();
     formData.append("file", new Blob([f]));
     formData.append("name", name);
-    // SEND WITH AXIOS
+    
     $axios
       .post("/template", formData, config)
       .then((res) => {
         console.log(res);
+        router.push('/create/meme')
       })
-      .catch((e) => console.log(e));
   };
 
   // TODO validate file types

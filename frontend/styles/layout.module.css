@@ -1,12 +1,14 @@
 .layout {
     width: 100vw;
-    height: calc(100vh - 34px);
+    min-height: calc(100vh - 34px);
 }
 
 .section {
+    margin-top: 50px;
+    margin-bottom: 50px;
     background-color: #32333F;
     width: 75vw;
-    height: 75vh;
+    min-height: 75vh;
 }
 
 .title {
