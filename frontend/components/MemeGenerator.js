@@ -7,7 +7,8 @@ const MemeGenerator = ({ template, onCreate}) => {
   const [bottomText, setBottomText] = useState("");
   const [isDeepFried, setDeepFried] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-
+  console.log("api", process.env.NEXT_PUBLIC_API_URL)
+  
   const handleChange = (e, setText) => {
     setText(e.target.value);
   };
@@ -42,8 +43,8 @@ const MemeGenerator = ({ template, onCreate}) => {
           setIsDisabled(true);
           onCreate({
           template: template.key,
-          topText: topText,
-          bottomText: bottomText,
+          topText: topText || '',
+          bottomText: bottomText || '',
           isDeepFried, isDeepFried
         })}}>
           Create
