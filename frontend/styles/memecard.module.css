@@ -2,6 +2,7 @@
   display: inline-block;
   background-color: white;
   margin: 0.5em;
+  cursor: pointer;
 }
 
 .image {

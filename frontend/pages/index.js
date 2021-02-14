@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <AppNavBar/>
-      <MemeList/>
+      <h1>Click recent or top. We'll change this to the landing page eventually</h1>
     </>
   )
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import styles from '../styles/memecard.module.css'
 
-const MemeCard = ({image, stars, comments}) => {
+const MemeCard = ({image, stars, comments, onClick}) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onClick}>
       <img className={styles.image} variant="top" src={image}/>
       <div style={{padding: "5px"}}>
         <h5>

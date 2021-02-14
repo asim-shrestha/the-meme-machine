@@ -1,7 +1,7 @@
 import React from 'react';
 import MemeCard from './MemeCard';
-import {Container, Col, Row} from 'react-bootstrap';
-import { $axios } from '../plugins/axios';
+import {Container, Row} from 'react-bootstrap';
+import MemeModal from './MemeModal';
 import { db } from '../plugins/firebase';
 
 const MemeList = () => {
@@ -12,7 +12,6 @@ const MemeList = () => {
         let m = [];
         snapshot.forEach((snap) => {m.push(snap.val());});
         setMemes(m);
-        console.log(m);
     })}, [])
 
   return (
@@ -24,9 +23,15 @@ const MemeList = () => {
         image={meme.url}
         stars={meme.stars}
         comments={meme.comments}
+        onClick={() => setSelectedMeme(meme)}
         />
         )})}
       </Row>
+      <MemeModal
+        meme={selectedMeme}
+        show={selectedMeme != null}
+        onHide={() => setSelectedMeme(null)}
+      />
     </Container>
   )
 }
