@@ -8,13 +8,13 @@ const create = () => {
   return (
     <>
       <AppNavBar/>
-      <AppLayout title="What do you meme?" class="create">
+      <AppLayout title="What do you meme?" className="create">
         <CreateOptionButton onClick={() => router.push("/create/template")}>
-          <img src="imageicon.webp"/>
+          <img src="imageicon.webp" className="createimg"/>
           <br/>upload a template
         </CreateOptionButton>
         <CreateOptionButton onClick={() => router.push("/create/meme")}>
-          <img src="createicon.png" style={{opacity:0.65}}/>
+          <img src="createicon.png" className="createimg" style={{opacity:0.65}}/>
           <br/>browse templates
         </CreateOptionButton>
       </AppLayout>
