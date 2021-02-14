@@ -6,10 +6,6 @@ import pyrebase
 from .config import BaseConfig
 config = BaseConfig()
 
-from .database import session, engine
-from . import models, schemas
-
-models.Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="The Meme Machine API",
     description="Team: Legacy Edition",
@@ -33,7 +29,7 @@ firebase = pyrebase.initialize_app({
 })
 
 firestore = firebase.storage()
-fire_db = firebase.database()
+db = firebase.database()
 
 from . import routes
 
