@@ -5,11 +5,11 @@ import {QUERIES} from '../util/data'
 import Columns from 'react-columns';
 import {Container, Row} from 'react-bootstrap';
 
-const MemeList = ({memes}) => {
+const MemeList = ({memes, size}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
-    <Container class="memelist">
+    <Container className="memelist">
       <Columns queries={QUERIES}>
         {memes.map(meme =>{ return (
           <MemeCard
@@ -18,6 +18,7 @@ const MemeList = ({memes}) => {
           stars={meme.stars}
           comments={meme.comments}
           onClick={() => setSelectedMeme(meme)}
+          size={size}
           />
           )})
         }
