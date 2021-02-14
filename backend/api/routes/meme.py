@@ -33,7 +33,9 @@ async def generate_meme(meme) -> str:
     template = db.child('templates').child(meme.template).get().val()
     file_path = config.TMP_FOLDER / template['uuid']
 
-    firestore.child(f"templates/{template['uuid']}").download(path=str(config.TMP_FOLDER), filename=str(file_path))
+    if not file_path.exists():
+        firestore.child(f"templates/{template['uuid']}").download(path=str(config.TMP_FOLDER), filename=str(file_path))
+
     buf = file_path
 
     buf = make_meme(buf, meme.topText, meme.bottomText)
@@ -54,16 +56,20 @@ async def create_meme(meme: MemeCreate):
 
 
 @router.post('/{meme_id}', response_model=Meme)
-async def create_meme_comment(meme_id: str, comment: MemeCreate):
+async def create_meme_comment(meme_id: str, comment: MemeCreate, target: str = 'memes'):
+    assert target in ['memes', 'comments']
     id_ = await generate_meme(comment)
 
-    meme = db.child("memes").child(meme_id).get().val()
-    db.child("memes").child(meme_id).update({'comments': meme.get('comments', 0) + 1})
+    if not (meme := db.child(target).child(meme_id).get().val()):
+        target = 'memes'
+        meme = db.child(target).child(meme_id).get().val()
+
+    db.child(target).child(meme_id).update({'comments': meme.get('comments', 0) + 1})
 
     comment = Meme(**comment.dict(), url=get_full_url(FOLDER, id_), timestamp=datetime.utcnow())
     meme_json = json.loads(comment.json())
 
-    db.child('comments').child(meme_id).push(meme_json)
+    db.child(target).child(meme_id).push(meme_json)
 
     return meme_json
 

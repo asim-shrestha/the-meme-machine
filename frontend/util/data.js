@@ -86,4 +86,8 @@ export const QUERIES = [
     columns: 5,
     query: "min-width: 1700px",
   },
+  {
+    columns: 6,
+    query: "min-width: 2100px",
+  },
 ];

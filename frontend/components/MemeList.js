@@ -9,13 +9,12 @@ const MemeList = ({memes, size}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
-    <Container className="memelist" style={{"padding":"5em 0"}}>
+    <div className="memelist" style={{"padding":"5em 0"}}>
       <Columns queries={QUERIES}>
         {memes.map(meme =>{ return (
           <MemeCard
-          key={meme.id}
+          key={meme.key}
           image={meme.url}
-          stars={meme.stars}
           comments={meme.comments}
           onClick={() => setSelectedMeme(meme)}
           size={size}
@@ -28,7 +27,7 @@ const MemeList = ({memes, size}) => {
         show={selectedMeme != null}
         onHide={() => setSelectedMeme(null)}
       />
-    </Container>
+    </div>
   )
 }
 

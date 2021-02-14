@@ -1,52 +1,55 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { $axios } from "../plugins/axios";
 import Meme from "./Meme";
-import {useRouter} from "next/router";
 
-const MemeGenerator = ({ template }) => {
-  const router = useRouter();
+const MemeGenerator = ({ template, onCreate}) => {
   const [topText, setTopText] = useState("");
   const [bottomText, setBottomText] = useState("");
+  const [isDeepFried, setDeepFried] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleChange = (e, setText) => {
     setText(e.target.value);
   };
 
-  async function submit() {
-    const payload = {
-      template: template.key,
-      topText: topText,
-      bottomText: bottomText,
-    };
-    $axios.post("/meme", payload).then(() => {
-        router.push("/recent")
-      }
-    );
-  }
-
   return (
-    <>
-      <h1>MEME GENERATOR</h1>
+    <div className="d-flex flex-row align-items-center">
       <Meme image={template.url} topText={topText} bottomText={bottomText} />
-      <Form>
-        <Form.Control
-          type="text"
-          placeholder="Top text"
-          value={topText}
-          onChange={(e) => setTopText(e.target.value)}
-        />
+      <Form className="d-flex flex-column align-items-center">
+        <div className="pb-2">
+          <Form.Control
+            type="text"
+            placeholder="Top text"
+            value={topText}
+            onChange={(e) => setTopText(e.target.value)}
+          />
+        </div>
         <Form.Control
           type="text"
           placeholder="Bottom text"
           value={bottomText}
           onChange={(e) => setBottomText(e.target.value)}
         />
-        <Button variant="primary" onClick={() => submit()}>
+        <Form.Check
+          type="checkbox"
+          label="Deep Fried"
+          value={isDeepFried}
+          onChange={(e) => {
+            setDeepFried(e.target.checked);
+          }}
+        />
+        <Button variant="primary" disabled={isDisabled} onClick={() => {
+          setIsDisabled(true);
+          onCreate({
+          template: template.key,
+          topText: topText,
+          bottomText: bottomText,
+          isDeepFried, isDeepFried
+        })}}>
           Create
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

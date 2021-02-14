@@ -32,5 +32,3 @@ firestore = firebase.storage()
 db = firebase.database()
 
 from . import routes
-
-

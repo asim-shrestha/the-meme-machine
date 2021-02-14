@@ -1,13 +1,6 @@
 fastapi
-SQLAlchemy
 python-multipart
-uvicorn
-psycopg2
-inflection
-pytest
-sqlalchemy-utils
-fastapi-crudrouter
 pyrebase4
 pillow
 deeppyer
-pyrebase4
+uvicorn

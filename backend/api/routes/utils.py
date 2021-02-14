@@ -16,7 +16,8 @@ def firebase_insert(collection: str):
 
         @wraps(func)
         async def wrapper(*args, **kwargs):
-            if ret := await func(*args, **kwargs):
+            ret = await func(*args, **kwargs)
+            if ret:
                 db.child(collection).push(json.loads(ret.json()))
             return ret
         return wrapper

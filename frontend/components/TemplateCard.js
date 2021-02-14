@@ -6,8 +6,8 @@ const TemplateCard = ({template, onClick}) => {
     <div className={styles.card} onClick={onClick}>
       <img className={styles.image} variant="top" src={template.url}/>
       <div style={{padding: "0.5em"}}>
-        <h5>
-          {template.name}
+        <h5 style={{color: "black"}}>
+          {template.name.toLowerCase()}
         </h5>
       </div>
     </div>

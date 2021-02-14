@@ -9,6 +9,12 @@ from io import BytesIO
 import deeppyer
 
 
+COLORS = {
+    'red': deeppyer.DefaultColours.red,
+    'blue': deeppyer.DefaultColours.blue
+}
+
+
 def make_meme(filename, top_text, bottom_text):
     #get image and font
     img = Image.open(str(filename))
@@ -36,8 +42,8 @@ def make_meme(filename, top_text, bottom_text):
 
     #calculate size and add bottom text
     w, h = draw.textsize(bottom_text, font=font)
-    draw.text(((W-w)/2, H-90), bottom_text, font=font, fill=white, stroke_fill=black, stroke_width=stroke)
-    
+    draw.text(((W-w)/2, H-60), bottom_text, font=font, fill=white, stroke_fill=black, stroke_width=stroke)
+
     #outputs to this file
     buf = BytesIO()
     img.save(buf, format='JPEG')
@@ -56,14 +62,14 @@ def get_text_size(text, image, font):
     draw = ImageDraw.Draw(im)
     return draw.textsize(text, font)
 
-async def fry_image(file):
+async def fry_image(file, color: str = 'red'):
     img = Image.open(file)
+    color = COLORS.get(color, deeppyer.DefaultColours.red)
 
     try:
-        img = await deeppyer.deepfry(img)
+        img = await deeppyer.deepfry(img, colours=color)
     except:
-        print('Flares failed')
-        img = await deeppyer.deepfry(img, flares=False)
+        img = await deeppyer.deepfry(img, colours=color, flares=False)
 
     buf = BytesIO()
     img.save(buf, format='JPEG')
