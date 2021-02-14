@@ -11,7 +11,10 @@ const CommentsModal = (props) => {
 
   async function submit(payload) {
     console.log(payload, meme)
-    await $axios.post(`/meme/${meme.key}?target=comments`, payload)
+    await $axios.post(`/meme/${meme.key}?target=comments`, payload).then(() => {
+      props.onHide();
+      getComments();
+    })
   }
 
   return (
