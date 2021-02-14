@@ -25,15 +25,15 @@ app.add_middleware(
 )
 
 
-
 firebase = pyrebase.initialize_app({
   "apiKey": "AIzaSyDMvzS-zLhvTyEDO-CtB_nWlU_j7AX_23E",
-  "databaseURL": '',
+  "databaseURL": 'https://legacy-meme-default-rtdb.firebaseio.com/',
   "authDomain": "legacy-meme.firebaseapp.com",
   "storageBucket": "legacy-meme.appspot.com"
 })
 
 firestore = firebase.storage()
+fire_db = firebase.database()
 
 from . import routes
 

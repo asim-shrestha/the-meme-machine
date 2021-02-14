@@ -2,7 +2,7 @@ import uuid
 from typing import List
 from io import BytesIO
 
-from api import session, models, schemas, firestore, config
+from api import session, models, schemas, firestore, config, fire_db
 from api.routes.utils import get_full_url
 from api.meme_maker.make_meme import make_meme, fry_image
 from fastapi import Depends, APIRouter, File, Form
@@ -10,6 +10,7 @@ from fastapi import Depends, APIRouter, File, Form
 router = APIRouter()
 
 FOLDER = '/memes'
+FEED = f'feed{FOLDER}'
 
 
 @router.post('', response_model=schemas.Meme)
@@ -31,7 +32,16 @@ async def create_meme(meme: schemas.MemeCreate, db: session = Depends(session)):
     meme = models.Meme(**meme.dict(), url=get_full_url(FOLDER, id_), uuid=id_)
     meme.save(db)
 
-    return meme
+    curr_memes = fire_db.child(FEED).order_by_key().get().each()
+    print(curr_memes)
+    print(len(curr_memes))
+    if len(curr_memes) > 10:
+        fire_db.child(FEED).child(curr_memes[0].key()).remove()
+
+    schema = schemas.Meme.from_orm(meme)
+    fire_db.child(FEED).push(schema.json())
+
+    return schema
 
 
 @router.get('', response_model=List[schemas.Meme])
