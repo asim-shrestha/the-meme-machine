@@ -8,7 +8,7 @@ const AppNavBar = () => {
   return (
     <>
       <Navbar id="appnavbar" style={{height: height,position:"fixed",width:"100%"}}>
-        <h1 onClick={() => router.push("/recent")}>⭐The Meme Machine</h1>
+        <h1 onClick={() => router.push("/")}>⭐The Meme Machine</h1>
         <div className="navitems">
           <button onClick={() => router.push("/recent")}>recent</button>
           <button onClick={() => router.push("/top")}>top memes</button>
