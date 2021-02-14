@@ -18,6 +18,8 @@ def firebase_insert(collection: str):
         async def wrapper(*args, **kwargs):
             if ret := await func(*args, **kwargs):
                 db.child(collection).push(json.loads(ret.json()))
+
+                print(json.loads(ret.json()))
             return ret
         return wrapper
     return decorator

@@ -15,6 +15,7 @@ class Template(BaseModel):
     name: str
     url: str
     timestamp: datetime
+    uuid: str
 
 
 @router.post('', response_model=Template)
