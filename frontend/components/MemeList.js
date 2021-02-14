@@ -1,15 +1,14 @@
 import React from 'react';
 import MemeCard from './MemeCard';
-import {Container, Row} from 'react-bootstrap';
 import MemeModal from './MemeModal';
-import { db } from '../plugins/firebase';
+import {QUERIES} from '../util/data'
+import Columns from 'react-columns';
 
 const MemeList = ({memes}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
-    <Container fluid>
-      <Row className="justify-content-center">
+    <Columns queries={QUERIES}>
       {memes.map(meme =>{ return (
         <MemeCard
         key={meme.id}
@@ -19,13 +18,12 @@ const MemeList = ({memes}) => {
         onClick={() => setSelectedMeme(meme)}
         />
         )})}
-      </Row>
       <MemeModal
         meme={selectedMeme}
         show={selectedMeme != null}
         onHide={() => setSelectedMeme(null)}
       />
-    </Container>
+    </Columns>
   )
 }
 
