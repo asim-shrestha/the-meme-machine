@@ -128,3 +128,10 @@ img {
   padding-top: 10%;
   padding-bottom: 0.5em;
 }
+
+.coverimage {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+}
