@@ -1,0 +1,12 @@
+.card {
+  display: inline-block;
+  background-color: white;
+  margin-top: 0.8em;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+  cursor: pointer;
+}
+
+.image {
+  width: 150px;
+}

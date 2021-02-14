@@ -1,11 +1,11 @@
 import React from "react";
-import styles from '../styles/memecard.module.css'
+import styles from '../styles/templatecard.module.css'
 
 const TemplateCard = ({template, onClick}) => {
   return (
     <div className={styles.card} onClick={onClick}>
       <img className={styles.image} variant="top" src={template.url}/>
-      <div style={{padding: "5px"}}>
+      <div style={{padding: "0.5em"}}>
         <h5>
           {template.name}
         </h5>
