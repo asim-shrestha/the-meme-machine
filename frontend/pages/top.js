@@ -8,9 +8,9 @@ export default function Home() {
 
   React.useEffect(() => {
     // TODO CHANGE TO GET TOP MEMES
-    db.ref("memes").on("value", snapshot => {
+    db.ref("memes").orderByChild('comments').on("value", snapshot => {
         let m = [];
-        snapshot.forEach((snap) => {m.push(snap.val());});
+        snapshot.forEach((snap) => {m.unshift(snap.val());});
         setMemes(m);
         console.log(m);
     })}, [])
