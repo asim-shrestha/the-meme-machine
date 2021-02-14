@@ -18,8 +18,10 @@ def make_meme(filename, top_text, bottom_text):
     draw = ImageDraw.Draw(img)
 
     try:
-        font = ImageFont.truetype('impact.ttf', 64)
+        font_size = find_font_size(bottom_text, 'impact.ttf', img, 1/3)
+        font = ImageFont.truetype('impact.ttf', font_size)
     except:
+        font_size = find_font_size(bottom_text, '/usr/local/share/fonts/impact.ttf', img, 1/3)
         font = ImageFont.truetype('/usr/local/share/fonts/impact.ttf', 64)
 
     #set some variables
@@ -42,6 +44,17 @@ def make_meme(filename, top_text, bottom_text):
 
     return buf
 
+def find_font_size(text, font, image, target_width_ratio):
+    tested_font_size = 100
+    tested_font = ImageFont.truetype(font, tested_font_size)
+    observed_width, observed_height = get_text_size(text, image, tested_font)
+    estimated_font_size = tested_font_size / (observed_width / image.width) * target_width_ratio
+    return round(estimated_font_size)
+
+def get_text_size(text, image, font):
+    im = Image.new('RGB', (image.width, image.height))
+    draw = ImageDraw.Draw(im)
+    return draw.textsize(text, font)
 
 async def fry_image(file):
     img = Image.open(file)
