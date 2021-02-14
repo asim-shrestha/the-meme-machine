@@ -27,7 +27,7 @@ const template = () => {
     const formData = new FormData();
     formData.append("file", new Blob([f]));
     formData.append("name", name);
-    
+
     $axios
       .post("/template", formData, config)
       .then((res) => {
@@ -50,7 +50,7 @@ const template = () => {
           />
           <Form.Group>
             <Form.File
-              label="Input an image template"
+              label="Upload a new meme template"
               onChange={(e) => setFile(e.target.files[0])}
             />
           </Form.Group>

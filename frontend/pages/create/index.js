@@ -11,11 +11,11 @@ const create = () => {
       <AppLayout title="What do you meme?">
         <CreateOptionButton onClick={() => router.push("/create/template")}>
           <img src="imageicon.webp"/>
-          <br/>upload a meme
+          <br/>upload a template
         </CreateOptionButton>
         <CreateOptionButton onClick={() => router.push("/create/meme")}>
           <img src="createicon.png" style={{opacity:0.65}}/>
-          <br/>create a meme
+          <br/>browse templates
         </CreateOptionButton>
       </AppLayout>
     </>
