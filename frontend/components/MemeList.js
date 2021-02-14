@@ -2,19 +2,18 @@ import React from 'react';
 import MemeCard from './MemeCard';
 import {Container, Col, Row} from 'react-bootstrap';
 import { $axios } from '../plugins/axios';
+import { db } from '../plugins/firebase';
 
 const MemeList = () => {
   const [memes, setMemes] = React.useState([]);
 
   React.useEffect(() => {
-    (async function anyNameFunction() {
-      try {
-        setMemes((await $axios.get('/meme')).data);
-      } catch (e) {
-        console.log(e)
-      }
-    })();
-  }, [])
+    db.ref("feed").child('memes').on("value", snapshot => {
+        let m = [];
+        snapshot.forEach((snap) => {m.push(JSON.parse(snap.val()));});
+        setMemes(m);
+        console.log(m);
+    })}, [])
 
   return (
     <Container fluid>
