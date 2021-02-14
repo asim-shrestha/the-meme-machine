@@ -1,24 +1,30 @@
 version: '3.7'
 
 services:
-  db:
-    image: postgres
-    restart: always
+traefik:
+    image: "traefik"
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secure.address=:443
+      - --providers.docker=true
+      - --certificatesresolvers.le.acme.email=adam_watkins@sfu.com
+      - --certificatesresolvers.le.acme.storage=/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true
     ports:
-      - "5432:5432"
-    env_file:
-      - .env
+      - "80:80"
+      - "443:443"
     volumes:
-      - pg_data:/var/lib/postgresql/data/
-
-  api:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    labels:
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.redirs.entrypoints=web"
+      - "traefik.http.routers.redirs.middlewares=redirect-to-https"
+  backend:
     build: ./backend
-    ports:
-      - "5000:5000"
-    env_file:
-      - .env
-    depends_on:
-      - db
-
-volumes:
-  pg_data:
+    restart: always
+    labels:
+      - "traefik.http.routers.api.tls=true"
+      - "traefik.http.routers.api.tls.certresolver=le"
+      - "traefik.http.routers.ui.rule=Host(`bubble-bot.com`)"
+      - "traefik.http.routers.api.priority=50"
