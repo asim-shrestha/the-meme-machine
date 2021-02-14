@@ -69,7 +69,7 @@ async def create_meme_comment(meme_id: str, comment: MemeCreate, target: str = '
     comment = Meme(**comment.dict(), url=get_full_url(FOLDER, id_), timestamp=datetime.utcnow())
     meme_json = json.loads(comment.json())
 
-    db.child(target).child(meme_id).push(meme_json)
+    db.child('comments').child(meme_id).push(meme_json)
 
     return meme_json
 
