@@ -3,10 +3,13 @@ from pathlib import Path
 
 from distutils.util import strtobool
 
+PORT = os.environ.get('PORT')
+if PORT == None: PORT = 5000
+PORT = int(PORT)
 
 class BaseConfig:
-    APT_HOST = '127.0.0.1'
-    API_PORT = int(os.environ.get('PORT')) or 5000
+    APT_HOST = '0.0.0.0'
+    API_PORT = PORT
     API_DEBUG = True
 
     # DB Config
