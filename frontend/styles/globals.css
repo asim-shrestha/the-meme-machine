@@ -80,6 +80,10 @@ a {
   margin-right: 5%;
 }
 
+.memelist > div > div > div {
+  text-align: center;
+}
+
 .navbar {
   background-color: var(--nav);
   height: 2em;

@@ -23,8 +23,8 @@ export default function Home() {
             <img src="star.png" className="bookimg" style={{"width":"15vh","margin-left":"5em"}}/>
             <h1 style={{"font-family":"Bangers"}}>The Meme Machine</h1>
             <br/><br/><br/><br/><br/>
-            <span>written by adam and asim</span><br/>
-            <span>illustrated by jen</span>
+            <span>Written by Adam & Asim</span><br/>
+            <span>Illustrated by Jen</span>
           </div>
         </div>
       </div>

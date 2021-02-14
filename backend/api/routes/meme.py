@@ -33,7 +33,9 @@ async def generate_meme(meme) -> str:
     template = db.child('templates').child(meme.template).get().val()
     file_path = config.TMP_FOLDER / template['uuid']
 
-    firestore.child(f"templates/{template['uuid']}").download(path=str(config.TMP_FOLDER), filename=str(file_path))
+    if not file_path.exists():
+        firestore.child(f"templates/{template['uuid']}").download(path=str(config.TMP_FOLDER), filename=str(file_path))
+
     buf = file_path
 
     buf = make_meme(buf, meme.topText, meme.bottomText)
