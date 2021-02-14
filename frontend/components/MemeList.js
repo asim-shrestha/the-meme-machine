@@ -13,9 +13,8 @@ const MemeList = ({memes, size}) => {
       <Columns queries={QUERIES}>
         {memes.map(meme =>{ return (
           <MemeCard
-          key={meme.id}
+          key={meme.key}
           image={meme.url}
-          stars={meme.stars}
           comments={meme.comments}
           onClick={() => setSelectedMeme(meme)}
           size={size}

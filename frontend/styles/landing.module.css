@@ -3,7 +3,7 @@
 .coverimg > img {
   object-fit: fill;
   width: 100vw;
-  height: 95vh;
+  height: 100vh;
   position: absolute;
 }
 .coverimg > h1 {

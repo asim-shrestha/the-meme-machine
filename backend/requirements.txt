@@ -3,3 +3,4 @@ python-multipart
 pyrebase4
 pillow
 deeppyer
+uvicorn
