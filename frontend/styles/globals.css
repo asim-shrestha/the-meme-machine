@@ -87,7 +87,7 @@ a {
 .navitems {
   margin-left: 1em;
   margin-right: 2em;
-  margin-top: 0.5em;
+  margin-top: 0.6em;
 }
 .navitems > button {
   background-color: var(--bg1);
