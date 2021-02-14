@@ -9,7 +9,7 @@ const MemeList = ({memes, size}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
-    <Container className="memelist">
+    <Container className="memelist" style={{"padding":"5em 0"}}>
       <Columns queries={QUERIES}>
         {memes.map(meme =>{ return (
           <MemeCard

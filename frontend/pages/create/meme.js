@@ -13,7 +13,10 @@ const create = () => {
   return (
     <>
       <AppNavBar/>
-      <AppLayout title={title} >
+      <AppLayout title={title}>
+        <form style={{"margin-left":"2em"}}>
+          <input type="text" placeholder="Search"/>
+        </form>
         {
           template === null ?
             <TemplateList setTemplate={setTemplate}/>

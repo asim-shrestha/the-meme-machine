@@ -2,6 +2,7 @@ import React from 'react';
 import TemplateCard from './TemplateCard';
 import {Container, Col, Row} from 'react-bootstrap';
 import {db} from "../plugins/firebase";
+import Columns from 'react-columns';
 
 const TemplateList = ({setTemplate}) => {
   const [templates, setTemplates] = React.useState([]);
@@ -15,8 +16,8 @@ const TemplateList = ({setTemplate}) => {
     })}, [])
 
   return (
-    <Container fluid>
-      <Row className="justify-content-center">
+    <Container fluid style={{"overflow-y":"scroll",height:"50vh",background:"white",margin:"0 2em"}}>
+      <Columns queries={templates}>
       {templates.map(template =>{ return (
         <TemplateCard
         key={template.id}
@@ -24,7 +25,7 @@ const TemplateList = ({setTemplate}) => {
         onClick={() => setTemplate(template)}
         />
         )})}
-      </Row>
+      </Columns>
     </Container>
   )
 }
