@@ -16,11 +16,11 @@ const TemplateList = ({setTemplate}) => {
     })}, [])
 
   return (
-    <Container fluid style={{"overflow-y":"scroll",height:"50vh",background:"white",margin:"0 2em"}}>
+    <Container fluid style={{overflowY:"scroll",height:"50vh",background:"white",margin:"0 2em"}}>
       <Columns queries={templates}>
       {templates.map(template =>{ return (
         <TemplateCard
-        key={template.id}
+        key={template.uuid}
         template={template}
         onClick={() => setTemplate(template)}
         />
