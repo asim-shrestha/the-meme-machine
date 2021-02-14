@@ -9,7 +9,7 @@ export default function Home() {
   React.useEffect(() => {
     db.ref("memes").on("value", snapshot => {
         let m = [];
-        snapshot.forEach((snap) => {m.push(snap.val());});
+        snapshot.forEach((snap) => {m.push({...snap.val(), key: snap.key});});
         setMemes(m);
         console.log(m);
     })}, [])

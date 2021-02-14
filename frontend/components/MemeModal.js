@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import MemeCard from './MemeCard';
 import MemeList from './MemeList';
-import {ALL_MEMES} from '../util/data';
+import {db} from "../plugins/firebase";
 
 const MemeModal = (props) => {
   const {meme} = props;
@@ -11,11 +11,11 @@ const MemeModal = (props) => {
   const [comments, setComments] = React.useState([]);
 
   React.useEffect(() => {
-    // TODO: ADAM CHANGE THIS CRAP :pray:
-    setComments(
-      ALL_MEMES
-    )
-  }, [])
+      db.ref("comments").child(meme.key).on("value", snapshot => {
+        let c = [];
+        snapshot.forEach((snap) => {c.push({...snap.val(), key: snap.key})});
+        setComments(c);
+    })}, [])
   
 
   return (

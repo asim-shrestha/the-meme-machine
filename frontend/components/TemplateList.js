@@ -7,7 +7,6 @@ const TemplateList = ({setTemplate}) => {
   const [templates, setTemplates] = React.useState([]);
 
     React.useEffect(() => {
-    // TODO CHANGE TO GET TOP MEMES
     db.ref("templates").on("value", snapshot => {
         let t = [];
         snapshot.forEach((snap) => {t.push({...snap.val(), key: snap.key});});

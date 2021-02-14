@@ -7,12 +7,10 @@ export default function Home() {
   const [memes, setMemes] = React.useState([]);
 
   React.useEffect(() => {
-    // TODO CHANGE TO GET TOP MEMES
     db.ref("memes").orderByChild('comments').on("value", snapshot => {
         let m = [];
-        snapshot.forEach((snap) => {m.unshift(snap.val());});
+        snapshot.forEach((snap) => {m.unshift({...snap.val(), key: snap.key});});
         setMemes(m);
-        console.log(m);
     })}, [])
 
   return (

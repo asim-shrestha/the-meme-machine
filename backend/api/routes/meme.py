@@ -54,11 +54,12 @@ async def create_meme(meme: MemeCreate):
 
 
 @router.post('/{meme_id}', response_model=Meme)
-async def create_meme_comment(meme_id: str, comment: MemeCreate):
+async def create_meme_comment(meme_id: str, comment: MemeCreate, target: str = 'memes'):
+    assert target in ['memes', 'comments']
     id_ = await generate_meme(comment)
 
-    meme = db.child("memes").child(meme_id).get().val()
-    db.child("memes").child(meme_id).update({'comments': meme.get('comments', 0) + 1})
+    meme = db.child(target).child(meme_id).get().val()
+    db.child(target).child(meme_id).update({'comments': meme.get('comments', 0) + 1})
 
     comment = Meme(**comment.dict(), url=get_full_url(FOLDER, id_), timestamp=datetime.utcnow())
     meme_json = json.loads(comment.json())
