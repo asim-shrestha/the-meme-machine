@@ -8,10 +8,14 @@ import {Container, Row} from 'react-bootstrap';
 const MemeList = ({memes, size, origin}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
+  let filteredMemes = memes.filter((theMeme) => {
+    return theMeme.url;
+  });
+
   return (
     <div className="memelist" style={{"padding":"5em 0"}}>
       <Columns queries={QUERIES}>
-        {memes.map(meme =>{ return (
+        {filteredMemes.map(meme =>{ return (
           <MemeCard
           key={meme.key}
           image={meme.url}
