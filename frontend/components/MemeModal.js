@@ -7,6 +7,7 @@ import CommentsModal from './CommentsModal';
 
 const MemeModal = (props) => {
   const {meme} = props;
+  const {prev} = props;
   if (!meme) { return (<> </>)}
 
   const [comments, setComments] = React.useState([]);
@@ -43,7 +44,7 @@ const MemeModal = (props) => {
         {
           comments.length > 0 ? 
           <div>
-            <MemeList memes={comments} size="sm"/>
+            <MemeList memes={comments} origin={meme} size="sm"/>
           </div>
           :
           "no responses yet. be the first!"
@@ -58,6 +59,7 @@ const MemeModal = (props) => {
         onHide={() => setShowModal(false)}
         meme={meme}
         getComments={getComments}
+        prev={prev}
       />
     </Modal>
   );

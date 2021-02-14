@@ -60,7 +60,8 @@ async def create_meme_comment(meme_id: str, comment: MemeCreate, target: str = '
     assert target in ['memes', 'comments']
     id_ = await generate_meme(comment)
 
-    if not (meme := db.child(target).child(meme_id).get().val()):
+    meme = db.child(target).child(meme_id).get().val()
+    if not (meme):
         target = 'memes'
         meme = db.child(target).child(meme_id).get().val()
 

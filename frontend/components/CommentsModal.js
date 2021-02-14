@@ -7,11 +7,16 @@ import { $axios } from "../plugins/axios";
 const CommentsModal = (props) => {
   const [template, setTemplate] = React.useState(null);
   const {meme} = props;
+  const {prev} = props;
   const {getComments} = props;
-
+  console.log("COMMENTS PREV:", prev);
   async function submit(payload) {
+    payload.prev = prev; 
     console.log(payload, meme)
-    await $axios.post(`/meme/${meme.key}?target=comments`, payload)
+    await $axios.post(`/meme/${meme.key}?target=comments`, payload).then(() => {
+      props.onHide();
+      getComments();
+    })
   }
 
   return (

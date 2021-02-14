@@ -5,7 +5,7 @@ import {QUERIES} from '../util/data'
 import Columns from 'react-columns';
 import {Container, Row} from 'react-bootstrap';
 
-const MemeList = ({memes, size}) => {
+const MemeList = ({memes, size, origin}) => {
   const [selectedMeme, setSelectedMeme] = React.useState(null);
 
   return (
@@ -26,6 +26,7 @@ const MemeList = ({memes, size}) => {
         meme={selectedMeme}
         show={selectedMeme != null}
         onHide={() => setSelectedMeme(null)}
+        prev={origin}
       />
     </div>
   )
