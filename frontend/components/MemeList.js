@@ -8,9 +8,9 @@ const MemeList = () => {
   const [memes, setMemes] = React.useState([]);
 
   React.useEffect(() => {
-    db.ref("feed").child('memes').on("value", snapshot => {
+    db.ref("memes").on("value", snapshot => {
         let m = [];
-        snapshot.forEach((snap) => {m.push(JSON.parse(snap.val()));});
+        snapshot.forEach((snap) => {m.push(snap.val());});
         setMemes(m);
         console.log(m);
     })}, [])
