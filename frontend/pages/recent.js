@@ -1,5 +1,6 @@
 import React from 'react';
 import AppNavBar from '../components/AppNavBar';
+import AppFooter from '../components/AppFooter';
 import { db } from '../plugins/firebase';
 import MemeList from '../components/MemeList';
 
@@ -18,6 +19,7 @@ export default function Home() {
     <>
       <AppNavBar/>
       <MemeList memes={memes}/>
+      <AppFooter/>
     </>
   )
 }

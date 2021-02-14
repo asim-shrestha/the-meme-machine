@@ -20,6 +20,11 @@ body, #__next{
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+footer {
+  background-color: var(--nav);
+  height: 20px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -93,7 +98,6 @@ a {
 .navitems {
   margin-left: 1em;
   margin-right: 2em;
-  margin-top: 0.6em;
 }
 .navitems > button {
   background-color: var(--bg1);

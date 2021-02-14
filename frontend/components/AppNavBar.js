@@ -7,7 +7,7 @@ const AppNavBar = () => {
   const router = useRouter();
   return (
     <>
-      <Navbar id="appnavbar" style={{height: height}}>
+      <Navbar id="appnavbar" style={{height: height,position:"fixed",width:"100%"}}>
         <h1 onClick={() => router.push("/recent")}>⭐The Meme Machine</h1>
         <div className="navitems">
           <button onClick={() => router.push("/recent")}>recent</button>
