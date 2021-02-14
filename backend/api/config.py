@@ -6,7 +6,7 @@ from distutils.util import strtobool
 
 class BaseConfig:
     APT_HOST = '127.0.0.1'
-    API_PORT = os.environ.get('PORT') or 5000
+    API_PORT = int(os.environ.get('PORT')) or 5000
     API_DEBUG = True
 
     # DB Config
