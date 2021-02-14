@@ -42,20 +42,19 @@ const template = () => {
       <AppNavBar />
       <AppLayout title="Upload a template">
         <Form>
+        <Form.Group>
+          <Form.File
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+        </Form.Group>
           <Form.Control
             type="text"
-            placeholder="Template Name"
+            placeholder="template name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <Form.Group>
-            <Form.File
-              label="Upload a new meme template"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </Form.Group>
-          <Button variant="primary" onClick={uploadFile}>
-            Upload
+          <Button variant="primary" onClick={uploadFile} style={{"margin-top":"2em"}}>
+            upload
           </Button>
         </Form>
       </AppLayout>
