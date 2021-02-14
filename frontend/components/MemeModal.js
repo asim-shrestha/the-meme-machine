@@ -12,12 +12,17 @@ const MemeModal = (props) => {
   const [comments, setComments] = React.useState([]);
   const [showModal, setShowModal] = React.useState(false);
 
+  const getComments = () => {
+    db.ref("comments").child(meme.key).on("value", snapshot => {
+      let c = [];
+      snapshot.forEach((snap) => {c.push({...snap.val(), key: snap.key})});
+      setComments(c);
+    });
+  }
+
   React.useEffect(() => {
-      db.ref("comments").child(meme.key).on("value", snapshot => {
-        let c = [];
-        snapshot.forEach((snap) => {c.push({...snap.val(), key: snap.key})});
-        setComments(c);
-    })}, [])
+    getComments();
+  }, [])
   
 
   return (
@@ -51,6 +56,8 @@ const MemeModal = (props) => {
       <CommentsModal
         show={showModal}
         onHide={() => setShowModal(false)}
+        meme={meme}
+        getComments={getComments}
       />
     </Modal>
   );

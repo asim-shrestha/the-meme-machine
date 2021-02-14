@@ -2,7 +2,6 @@ import React from 'react';
 import TemplateCard from './TemplateCard';
 import {Container, Col, Row} from 'react-bootstrap';
 import {db} from "../plugins/firebase";
-import Columns from 'react-columns';
 
 const TemplateList = ({setTemplate}) => {
   const [search, setSearch] = React.useState('');
