@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: ./builds/Dockerfile
+run:
+  web: python asgi.py
