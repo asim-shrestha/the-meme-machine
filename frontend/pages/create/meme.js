@@ -11,7 +11,7 @@ const create = () => {
   const router = useRouter();
   let title = "Select a template";
   if (template) { title = "Create a meme"; }
-
+  console.log(process.env.API_URL)
   async function submit(payload) {
     $axios.post("/meme", payload).then(() => {
       router.push("/recent");
