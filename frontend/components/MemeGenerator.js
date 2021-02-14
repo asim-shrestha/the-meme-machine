@@ -8,6 +8,7 @@ const MemeGenerator = ({ template }) => {
   const router = useRouter();
   const [topText, setTopText] = useState("");
   const [bottomText, setBottomText] = useState("");
+  const [isDeepFried, setDeepFried] = useState(false)
 
   const handleChange = (e, setText) => {
     setText(e.target.value);
@@ -18,6 +19,7 @@ const MemeGenerator = ({ template }) => {
       template: template.key,
       topText: topText,
       bottomText: bottomText,
+      isDeepFried: isDeepFried
     };
     $axios.post("/meme", payload).then(() => {
         router.push("/recent")
@@ -41,6 +43,14 @@ const MemeGenerator = ({ template }) => {
           placeholder="Bottom text"
           value={bottomText}
           onChange={(e) => setBottomText(e.target.value)}
+        />
+                <Form.Control
+          type="checkbox"
+          placeholder="Deep Fried"
+          value={isDeepFried}
+          onChange={(e) => {
+            setDeepFried(e.target.checked)
+          }}
         />
         <Button variant="primary" onClick={() => submit()}>
           Create
