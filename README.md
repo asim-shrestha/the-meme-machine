@@ -4,7 +4,8 @@
 <p align="center">
   <strong>Mountain Madness 2021 Submission</strong></br>
   <em>Team: Legacy Edition</em></br>
-  <a href="https://mountain-madness-2021.vercel.app/" target="_blaank">Demo</a>
+  <a href="https://mountain-madness-2021.vercel.app/" target="_blaank">Demo</a></br>
+  <sub>Please start the API to upload / create memes (taken down due to costs)
 </p>
 <p align="center">
 <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/fastapi" />
