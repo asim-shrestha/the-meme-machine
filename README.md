@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/asim-shrestha/mountain-madness-2021/master/frontend/public/hero.png" alt="The Meme Machine" height="300" />
 </p>
 <p align="center">
-  <strong>Mountain Madness 2021 Submission</strong></br>
+  <strong>🏆 3rd Place SFU Mountain Madness 2021 🏆</strong></br>
   <em>Team: Legacy Edition</em></br>
   <a href="https://mountain-madness-2021.vercel.app/" target="_blaank">Demo</a></br>
   <sub>Please start the API to upload / create memes (taken down due to costs)
